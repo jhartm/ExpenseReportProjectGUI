@@ -22,7 +22,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expensereport.ChargeTo&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="chargeToQuery1">
@@ -40,7 +40,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expensereport.ChargeTo&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="chargeToQuery2">
@@ -58,7 +58,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expensereport.ChargeTo&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="chargeToQuery3">
@@ -76,7 +76,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expensereport.ChargeTo&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
       </AuxValues>
     </Component>
   </NonVisualComponents>
@@ -245,6 +245,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="warningLabel">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>

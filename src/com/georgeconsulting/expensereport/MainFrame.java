@@ -1,5 +1,7 @@
 package com.georgeconsulting.expensereport;
 
+
+
 import java.awt.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -15,6 +17,9 @@ public class MainFrame extends javax.swing.JFrame {
     public DBConnect conn;
     public Login newLogin;
     public Employee currentUser;
+    public static String temp;
+    public String usernameInput;
+    public String passwordInput;
 
     /**
      * Creates new form MainFrame
@@ -132,6 +137,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
+        warningLabel.setForeground(java.awt.Color.red);
         warningLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         warningLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -641,18 +647,17 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonPressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonPressed
-//        Login newLogin = new Login();
-//        Employee currentUser = new Employee();
+        usernameInput = usernameField.getText();
+        passwordInput = new String(passwordField.getPassword());
 
         try {
-            newLogin.getLogin(this.conn, usernameField.getText(), passwordField.getText());
-
-            currentUser = new Employee(newLogin.userID, conn);
+            newLogin.getLogin(this.conn, usernameInput, passwordInput);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         userTabPanel.setSelectedComponent(basicTabPanel);
 
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
@@ -660,8 +665,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         usernameField.setText("");
         passwordField.setText("");
+        
+        usernameInput = "";
+        passwordInput = "";
 
         if (newLogin.validUser == true) {
+            try {
+                currentUser = new Employee(newLogin.userID, conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             if (currentUser.privLevel == 1) {
                 userTabPanel.setEnabledAt(1, false);
                 userTabPanel.setEnabledAt(2, false);
@@ -687,6 +701,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         userTabPanel.setEnabledAt(1, true);
         userTabPanel.setEnabledAt(2, true);
+        
+        warningLabel.setText("");
+        newLogin.validUser = false;
     }//GEN-LAST:event_logoutButtonPressed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -713,7 +730,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        // TODO add your handling code here:
+//        int contractNum = 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void newResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newResetButtonActionPerformed
@@ -777,17 +794,21 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_newSubmitButtonActionPerformed
 
     private void airTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusLost
+        temp = airTransField.getText();
+        
         if(airTransField.getText().equals("")) {
-            airTransField.setValue(0);
+            airTransField.setText(temp);
+//            airTransField.setValue(Float.parseFloat(temp));
         }
+        else {
+            float air = Float.parseFloat(airTransField.getText());
+            float gnd = Float.parseFloat(gndTransField.getText());
+            float lodge = Float.parseFloat(lodgeField.getText());
+            float pd = Float.parseFloat(perdiemField.getText());
+            float other = Float.parseFloat(otherExpField.getText());
         
-        float air = Float.parseFloat(airTransField.getText());
-        float gnd = Float.parseFloat(gndTransField.getText());
-        float lodge = Float.parseFloat(lodgeField.getText());
-        float pd = Float.parseFloat(perdiemField.getText());
-        float other = Float.parseFloat(otherExpField.getText());
-        
-        estTotalField.setValue(air + gnd + lodge + pd + other); 
+            estTotalField.setValue(air + gnd + lodge + pd + other);
+        }
     }//GEN-LAST:event_airTransFieldFocusLost
 
     private void gndTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gndTransFieldFocusLost
@@ -797,7 +818,9 @@ public class MainFrame extends javax.swing.JFrame {
         float pd = Float.parseFloat(perdiemField.getText());
         float other = Float.parseFloat(otherExpField.getText());
         
-        estTotalField.setValue(air + gnd + lodge + pd + other); 
+        estTotalField.setValue(air + gnd + lodge + pd + other);
+        
+        temp = gndTransField.getText();
     }//GEN-LAST:event_gndTransFieldFocusLost
 
     private void lodgeFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lodgeFieldFocusLost
@@ -808,6 +831,8 @@ public class MainFrame extends javax.swing.JFrame {
         float other = Float.parseFloat(otherExpField.getText());
         
         estTotalField.setValue(air + gnd + lodge + pd + other); 
+        
+        temp = lodgeField.getText();
     }//GEN-LAST:event_lodgeFieldFocusLost
 
     private void perdiemFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_perdiemFieldFocusLost
@@ -818,6 +843,8 @@ public class MainFrame extends javax.swing.JFrame {
         float other = Float.parseFloat(otherExpField.getText());
         
         estTotalField.setValue(air + gnd + lodge + pd + other); 
+        
+        temp = perdiemField.getText();
     }//GEN-LAST:event_perdiemFieldFocusLost
 
     private void otherExpFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_otherExpFieldFocusLost
@@ -828,10 +855,12 @@ public class MainFrame extends javax.swing.JFrame {
         float other = Float.parseFloat(otherExpField.getText());
         
         estTotalField.setValue(air + gnd + lodge + pd + other); 
+        
+        temp = otherExpField.getText();
     }//GEN-LAST:event_otherExpFieldFocusLost
 
     private void airTransFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusGained
-
+        airTransField.setText("");
     }//GEN-LAST:event_airTransFieldFocusGained
 
     
@@ -876,10 +905,10 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel basicMenuPanel;
     public javax.swing.JPanel basicTabPanel;
     public javax.swing.JLabel chargeToLabel;
-    public java.util.List<com.georgeconsulting.expensereport.ChargeTo> chargeToList;
-    public java.util.List<com.georgeconsulting.expensereport.ChargeTo> chargeToList1;
-    public java.util.List<com.georgeconsulting.expensereport.ChargeTo> chargeToList2;
-    public java.util.List<com.georgeconsulting.expensereport.ChargeTo> chargeToList3;
+    public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList;
+    public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList1;
+    public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList2;
+    public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList3;
     public javax.persistence.Query chargeToQuery;
     public javax.persistence.Query chargeToQuery1;
     public javax.persistence.Query chargeToQuery2;
