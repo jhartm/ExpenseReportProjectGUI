@@ -273,6 +273,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         gndTransField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00;(¤#,##0.00)"))));
         gndTransField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                gndTransFieldFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 gndTransFieldFocusLost(evt);
             }
@@ -280,6 +283,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         lodgeField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00;(¤#,##0.00)"))));
         lodgeField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lodgeFieldFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 lodgeFieldFocusLost(evt);
             }
@@ -287,6 +293,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         perdiemField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00;(¤#,##0.00)"))));
         perdiemField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                perdiemFieldFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 perdiemFieldFocusLost(evt);
             }
@@ -294,11 +303,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         otherExpField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00;(¤#,##0.00)"))));
         otherExpField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                otherExpFieldFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 otherExpFieldFocusLost(evt);
             }
         });
 
+        estTotalField.setEditable(false);
         estTotalField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00;(¤#,##0.00)"))));
 
         submitDateField.setEditable(false);
@@ -781,8 +794,9 @@ public class MainFrame extends javax.swing.JFrame {
 //        System.out.println("Result: " + stotal);
 //        
 //        estTotalField.setValue(total);
-//        
-//        System.out.println(ChargeTo.getContractID());
+        ChargeTo cont = new ChargeTo();
+        
+        System.out.println(cont.getContractID());
     }//GEN-LAST:event_newSubmitButtonActionPerformed
 
     private void airTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusLost
@@ -790,7 +804,6 @@ public class MainFrame extends javax.swing.JFrame {
         
         if(airTransField.getText().equals("")) {
             airTransField.setText(temp);
-//            airTransField.setValue(Float.parseFloat(temp));
         }
         else {
             float air = Float.parseFloat(airTransField.getText());
@@ -804,54 +817,75 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_airTransFieldFocusLost
 
     private void gndTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gndTransFieldFocusLost
-        float air = Float.parseFloat(airTransField.getText());
-        float gnd = Float.parseFloat(gndTransField.getText());
-        float lodge = Float.parseFloat(lodgeField.getText());
-        float pd = Float.parseFloat(perdiemField.getText());
-        float other = Float.parseFloat(otherExpField.getText());
-        
-        estTotalField.setValue(air + gnd + lodge + pd + other);
-        
         temp = gndTransField.getText();
+        
+        if(gndTransField.getText().equals("")) {
+            gndTransField.setText(temp);
+        }
+        else {
+            float air = Float.parseFloat(airTransField.getText());
+            float gnd = Float.parseFloat(gndTransField.getText());
+            float lodge = Float.parseFloat(lodgeField.getText());
+            float pd = Float.parseFloat(perdiemField.getText());
+            float other = Float.parseFloat(otherExpField.getText());
+        
+            estTotalField.setValue(air + gnd + lodge + pd + other);
+        }
     }//GEN-LAST:event_gndTransFieldFocusLost
 
     private void lodgeFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lodgeFieldFocusLost
-        float air = Float.parseFloat(airTransField.getText());
-        float gnd = Float.parseFloat(gndTransField.getText());
-        float lodge = Float.parseFloat(lodgeField.getText());
-        float pd = Float.parseFloat(perdiemField.getText());
-        float other = Float.parseFloat(otherExpField.getText());
-        
-        estTotalField.setValue(air + gnd + lodge + pd + other); 
-        
         temp = lodgeField.getText();
+        
+        if(lodgeField.getText().equals("")) {
+            lodgeField.setText(temp);
+        }
+        else {
+            float air = Float.parseFloat(airTransField.getText());
+            float gnd = Float.parseFloat(gndTransField.getText());
+            float lodge = Float.parseFloat(lodgeField.getText());
+            float pd = Float.parseFloat(perdiemField.getText());
+            float other = Float.parseFloat(otherExpField.getText());
+        
+            estTotalField.setValue(air + gnd + lodge + pd + other);
+        }
     }//GEN-LAST:event_lodgeFieldFocusLost
 
     private void perdiemFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_perdiemFieldFocusLost
-        float air = Float.parseFloat(airTransField.getText());
-        float gnd = Float.parseFloat(gndTransField.getText());
-        float lodge = Float.parseFloat(lodgeField.getText());
-        float pd = Float.parseFloat(perdiemField.getText());
-        float other = Float.parseFloat(otherExpField.getText());
-        
-        estTotalField.setValue(air + gnd + lodge + pd + other); 
-        
         temp = perdiemField.getText();
+        
+        if(perdiemField.getText().equals("")) {
+            perdiemField.setText(temp);
+        }
+        else {
+            float air = Float.parseFloat(airTransField.getText());
+            float gnd = Float.parseFloat(gndTransField.getText());
+            float lodge = Float.parseFloat(lodgeField.getText());
+            float pd = Float.parseFloat(perdiemField.getText());
+            float other = Float.parseFloat(otherExpField.getText());
+        
+            estTotalField.setValue(air + gnd + lodge + pd + other);
+        }
     }//GEN-LAST:event_perdiemFieldFocusLost
 
     private void otherExpFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_otherExpFieldFocusLost
-        float air = Float.parseFloat(airTransField.getText());
-        float gnd = Float.parseFloat(gndTransField.getText());
-        float lodge = Float.parseFloat(lodgeField.getText());
-        float pd = Float.parseFloat(perdiemField.getText());
-        float other = Float.parseFloat(otherExpField.getText());
-        
-        estTotalField.setValue(air + gnd + lodge + pd + other); 
-        
         temp = otherExpField.getText();
+        
+        if(otherExpField.getText().equals("")) {
+            otherExpField.setText(temp);
+        }
+        else {
+            float air = Float.parseFloat(airTransField.getText());
+            float gnd = Float.parseFloat(gndTransField.getText());
+            float lodge = Float.parseFloat(lodgeField.getText());
+            float pd = Float.parseFloat(perdiemField.getText());
+            float other = Float.parseFloat(otherExpField.getText());
+        
+            estTotalField.setValue(air + gnd + lodge + pd + other);
+        }
     }//GEN-LAST:event_otherExpFieldFocusLost
 
     private void airTransFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusGained
+        airTransField.setText(airTransField.getText());
         airTransField.selectAll();
     }//GEN-LAST:event_airTransFieldFocusGained
 
@@ -862,6 +896,26 @@ public class MainFrame extends javax.swing.JFrame {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void gndTransFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gndTransFieldFocusGained
+        gndTransField.setText(gndTransField.getText());
+        gndTransField.selectAll();
+    }//GEN-LAST:event_gndTransFieldFocusGained
+
+    private void lodgeFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lodgeFieldFocusGained
+        lodgeField.setText(lodgeField.getText());
+        lodgeField.selectAll();
+    }//GEN-LAST:event_lodgeFieldFocusGained
+
+    private void perdiemFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_perdiemFieldFocusGained
+        perdiemField.setText(perdiemField.getText());
+        perdiemField.selectAll();
+    }//GEN-LAST:event_perdiemFieldFocusGained
+
+    private void otherExpFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_otherExpFieldFocusGained
+        otherExpField.setText(otherExpField.getText());
+        otherExpField.selectAll();
+    }//GEN-LAST:event_otherExpFieldFocusGained
 
     
     public static void main(String args[]) {

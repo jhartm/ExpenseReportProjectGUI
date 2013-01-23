@@ -617,6 +617,7 @@
                             </Property>
                           </Properties>
                           <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="gndTransFieldFocusGained"/>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="gndTransFieldFocusLost"/>
                           </Events>
                         </Component>
@@ -627,6 +628,7 @@
                             </Property>
                           </Properties>
                           <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lodgeFieldFocusGained"/>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="lodgeFieldFocusLost"/>
                           </Events>
                         </Component>
@@ -637,6 +639,7 @@
                             </Property>
                           </Properties>
                           <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="perdiemFieldFocusGained"/>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="perdiemFieldFocusLost"/>
                           </Events>
                         </Component>
@@ -647,11 +650,13 @@
                             </Property>
                           </Properties>
                           <Events>
+                            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="otherExpFieldFocusGained"/>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="otherExpFieldFocusLost"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JFormattedTextField" name="estTotalField">
                           <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
                             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                               <Format format="#,##0.00;(&#xa4;#,##0.00)" subtype="-1" type="4"/>
                             </Property>
