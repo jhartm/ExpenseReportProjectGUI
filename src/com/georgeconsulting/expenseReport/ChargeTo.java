@@ -28,6 +28,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "ChargeTo.findAll", query = "SELECT c FROM ChargeTo c"),
     @NamedQuery(name = "ChargeTo.findByContractID", query = "SELECT c FROM ChargeTo c WHERE c.contractID = :contractID"),
     @NamedQuery(name = "ChargeTo.findByContract", query = "SELECT c FROM ChargeTo c WHERE c.contract = :contract")})
+
 public class ChargeTo implements Serializable {
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -88,7 +89,7 @@ public class ChargeTo implements Serializable {
 
     @Override
     public String toString() {
-        return contract;
+        return contractID + " - " + contract;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

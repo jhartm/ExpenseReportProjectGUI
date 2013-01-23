@@ -110,6 +110,11 @@ public class MainFrame extends javax.swing.JFrame {
         logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         mainPanel.setLayout(new java.awt.CardLayout());
 
@@ -723,6 +728,8 @@ public class MainFrame extends javax.swing.JFrame {
         perdiemField.setValue(0);
         otherExpField.setValue(0);
         estTotalField.setValue(0);
+        
+        chargeToDropDown.setSelectedIndex(0);
     }//GEN-LAST:event_newResetButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
@@ -759,21 +766,23 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void newSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSubmitButtonActionPerformed
-        String airIn = airTransField.getText();
-        String gndIn = gndTransField.getText();
-        System.out.println(airIn);
-        System.out.println(gndIn);
-        float air = Float.parseFloat(airIn);
-        float gnd = Float.parseFloat(gndIn);
-        
-        float total = air + gnd;
-        
-        System.out.println(total);
-        
-        String stotal = String.valueOf(total);
-        System.out.println("Result: " + stotal);
-        
-        estTotalField.setValue(total);
+//        String airIn = airTransField.getText();
+//        String gndIn = gndTransField.getText();
+//        System.out.println(airIn);
+//        System.out.println(gndIn);
+//        float air = Float.parseFloat(airIn);
+//        float gnd = Float.parseFloat(gndIn);
+//        
+//        float total = air + gnd;
+//        
+//        System.out.println(total);
+//        
+//        String stotal = String.valueOf(total);
+//        System.out.println("Result: " + stotal);
+//        
+//        estTotalField.setValue(total);
+//        
+//        System.out.println(ChargeTo.getContractID());
     }//GEN-LAST:event_newSubmitButtonActionPerformed
 
     private void airTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusLost
@@ -843,8 +852,16 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_otherExpFieldFocusLost
 
     private void airTransFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusGained
-        airTransField.setText("");
+        airTransField.selectAll();
     }//GEN-LAST:event_airTransFieldFocusGained
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            conn.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     
     public static void main(String args[]) {
