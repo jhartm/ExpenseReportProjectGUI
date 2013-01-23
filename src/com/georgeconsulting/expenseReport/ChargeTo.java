@@ -1,8 +1,10 @@
+package com.georgeconsulting.expenseReport;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.georgeconsulting.expensereport;
+
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

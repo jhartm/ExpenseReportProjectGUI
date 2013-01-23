@@ -79,6 +79,24 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
       </AuxValues>
     </Component>
+    <Component class="javax.persistence.Query" name="chargeToQuery4">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT c FROM ChargeTo c"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="entityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="chargeToList4">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="chargeToQuery4"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -417,13 +435,13 @@
                                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="submittedByField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="submittedByField" alignment="0" pref="200" max="32767" attributes="0"/>
                                       <Component id="chargeToLabel" min="-2" max="-2" attributes="0"/>
                                       <Component id="submittedByLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" alignment="0" pref="200" max="32767" attributes="0"/>
                                       <Component id="newSubmitButton" min="-2" max="-2" attributes="0"/>
                                       <Component id="newResetButton" min="-2" max="-2" attributes="0"/>
                                       <Component id="submitDateField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="chargeToDropDown" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="139" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -449,7 +467,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="airTransLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="airTransField" min="-2" max="-2" attributes="0"/>
@@ -468,18 +486,8 @@
                                           <Component id="perdiemLabel" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="perdiemField" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="otherExpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="newSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="newResetButton" min="-2" max="-2" attributes="0"/>
-                                              <Component id="otherExpField" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="submittedByLabel" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
@@ -493,9 +501,19 @@
                                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="chargeToDropDown" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="otherExpLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="newSubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="newResetButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="otherExpField" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="estTotalLabel" min="-2" max="-2" attributes="0"/>
@@ -561,15 +579,6 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Total:"/>
                           </Properties>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox1">
-                          <BindingProperties>
-                            <BindingProperty name="elements" source="chargeToList" target="jComboBox1" targetPath="elements" updateStrategy="0" immediately="false"/>
-                          </BindingProperties>
-                          <Events>
-                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox1ItemStateChanged"/>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="newSubmitButton">
                           <Properties>
@@ -649,6 +658,11 @@
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="chargeToDropDown">
+                          <BindingProperties>
+                            <BindingProperty name="elements" source="chargeToList" target="chargeToDropDown" targetPath="elements" updateStrategy="0" immediately="false"/>
+                          </BindingProperties>
                         </Component>
                       </SubComponents>
                     </Container>

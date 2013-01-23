@@ -1,4 +1,4 @@
-package com.georgeconsulting.expensereport;
+package com.georgeconsulting.expenseReport;
 
 
 
@@ -50,6 +50,8 @@ public class MainFrame extends javax.swing.JFrame {
         chargeToList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery2.getResultList();
         chargeToQuery3 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ChargeTo c");
         chargeToList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery3.getResultList();
+        chargeToQuery4 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ChargeTo c");
+        chargeToList4 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery4.getResultList();
         mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -75,7 +77,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         submittedByField = new javax.swing.JTextField();
         estTotalLabel = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
         newSubmitButton = new javax.swing.JButton();
         newResetButton = new javax.swing.JButton();
         airTransField = new javax.swing.JFormattedTextField();
@@ -85,6 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
         otherExpField = new javax.swing.JFormattedTextField();
         estTotalField = new javax.swing.JFormattedTextField();
         submitDateField = new javax.swing.JTextField();
+        chargeToDropDown = new javax.swing.JComboBox();
         editRequestPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         deleteRequestPanel = new javax.swing.JPanel();
@@ -240,20 +242,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         estTotalLabel.setText("Total:");
 
-        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chargeToList, jComboBox1);
-        bindingGroup.addBinding(jComboBoxBinding);
-
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
-            }
-        });
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
         newSubmitButton.setText("Submit");
         newSubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,6 +298,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         submitDateField.setEditable(false);
 
+        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chargeToList, chargeToDropDown);
+        bindingGroup.addBinding(jComboBoxBinding);
+
         org.jdesktop.layout.GroupLayout newRequestPanelLayout = new org.jdesktop.layout.GroupLayout(newRequestPanel);
         newRequestPanel.setLayout(newRequestPanelLayout);
         newRequestPanelLayout.setHorizontalGroup(
@@ -318,13 +309,13 @@ public class MainFrame extends javax.swing.JFrame {
                 .add(59, 59, 59)
                 .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(jLabel3)
-                    .add(submittedByField)
+                    .add(submittedByField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .add(chargeToLabel)
                     .add(submittedByLabel)
-                    .add(jComboBox1, 0, 200, Short.MAX_VALUE)
                     .add(newSubmitButton)
                     .add(newResetButton)
-                    .add(submitDateField))
+                    .add(submitDateField)
+                    .add(chargeToDropDown, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 139, Short.MAX_VALUE)
                 .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(estTotalLabel)
@@ -363,15 +354,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .add(18, 18, 18)
                         .add(perdiemLabel)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(perdiemField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(12, 12, 12)
-                        .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(otherExpLabel)
-                            .add(newSubmitButton))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(newResetButton)
-                            .add(otherExpField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(perdiemField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(newRequestPanelLayout.createSequentialGroup()
                         .add(submittedByLabel)
                         .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -383,8 +366,16 @@ public class MainFrame extends javax.swing.JFrame {
                                 .add(submittedByField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(18, 18, 18)
                                 .add(jLabel3)))
-                        .add(18, 18, 18)
-                        .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(chargeToDropDown, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(12, 12, 12)
+                .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(otherExpLabel)
+                    .add(newSubmitButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(newResetButton)
+                    .add(otherExpField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(estTotalLabel)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -725,14 +716,6 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-//        int contractNum = 
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-
     private void newResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newResetButtonActionPerformed
         airTransField.setValue(0);
         gndTransField.setValue(0);
@@ -904,15 +887,18 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel airTransLabel;
     public javax.swing.JPanel basicMenuPanel;
     public javax.swing.JPanel basicTabPanel;
+    public javax.swing.JComboBox chargeToDropDown;
     public javax.swing.JLabel chargeToLabel;
     public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList;
     public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList1;
     public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList2;
     public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList3;
+    public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList4;
     public javax.persistence.Query chargeToQuery;
     public javax.persistence.Query chargeToQuery1;
     public javax.persistence.Query chargeToQuery2;
     public javax.persistence.Query chargeToQuery3;
+    public javax.persistence.Query chargeToQuery4;
     public javax.swing.JButton deleteButton;
     public javax.swing.JPanel deleteRequestPanel;
     public javax.swing.JButton editButton;
@@ -928,7 +914,6 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
-    public javax.swing.JComboBox jComboBox1;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;

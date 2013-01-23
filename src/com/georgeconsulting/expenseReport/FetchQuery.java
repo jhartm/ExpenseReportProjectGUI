@@ -1,4 +1,4 @@
-package com.georgeconsulting.expensereport;
+package com.georgeconsulting.expenseReport;
 
 import java.sql.*;
 
