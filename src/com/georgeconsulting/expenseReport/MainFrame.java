@@ -6,6 +6,7 @@ import java.awt.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static String temp;
     public String usernameInput;
     public String passwordInput;
+    public TravelExpenseReport expReport;
 
     /**
      * Creates new form MainFrame
@@ -27,6 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() throws SQLException {
         conn = new DBConnect();
         newLogin = new Login();
+        expReport = new TravelExpenseReport();
 
         initComponents();
     }
@@ -46,6 +49,8 @@ public class MainFrame extends javax.swing.JFrame {
         chargeToList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery.getResultList();
         newRequestConfirmDialog = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
+        newReqConfirmButton = new javax.swing.JButton();
+        newReqBackButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -55,7 +60,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         warningLabel = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         userTabPanel = new javax.swing.JTabbedPane();
         basicTabPanel = new javax.swing.JPanel();
         basicMenuPanel = new javax.swing.JPanel();
@@ -107,23 +111,48 @@ public class MainFrame extends javax.swing.JFrame {
         newRequestConfirmDialog.setAlwaysOnTop(true);
         newRequestConfirmDialog.setBounds(new java.awt.Rectangle(0, 22, 600, 400));
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setText("Confirm Submission");
+
+        newReqConfirmButton.setText("Submit");
+        newReqConfirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newReqConfirmButtonActionPerformed(evt);
+            }
+        });
+
+        newReqBackButton.setText("Back");
+        newReqBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newReqBackButtonActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout newRequestConfirmDialogLayout = new org.jdesktop.layout.GroupLayout(newRequestConfirmDialog.getContentPane());
         newRequestConfirmDialog.getContentPane().setLayout(newRequestConfirmDialogLayout);
         newRequestConfirmDialogLayout.setHorizontalGroup(
             newRequestConfirmDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(newRequestConfirmDialogLayout.createSequentialGroup()
-                .add(265, 265, 265)
-                .add(jLabel8)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .add(newRequestConfirmDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(newRequestConfirmDialogLayout.createSequentialGroup()
+                        .add(229, 229, 229)
+                        .add(jLabel8))
+                    .add(newRequestConfirmDialogLayout.createSequentialGroup()
+                        .add(169, 169, 169)
+                        .add(newReqConfirmButton)
+                        .add(66, 66, 66)
+                        .add(newReqBackButton)))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         newRequestConfirmDialogLayout.setVerticalGroup(
             newRequestConfirmDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(newRequestConfirmDialogLayout.createSequentialGroup()
-                .add(173, 173, 173)
+                .add(28, 28, 28)
                 .add(jLabel8)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 169, Short.MAX_VALUE)
+                .add(newRequestConfirmDialogLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(newReqConfirmButton)
+                    .add(newReqBackButton))
+                .add(158, 158, 158))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -165,42 +194,30 @@ public class MainFrame extends javax.swing.JFrame {
         warningLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         warningLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         org.jdesktop.layout.GroupLayout loginPanelLayout = new org.jdesktop.layout.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
         loginPanelLayout.setHorizontalGroup(
             loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(loginPanelLayout.createSequentialGroup()
+                .add(285, 285, 285)
                 .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(loginPanelLayout.createSequentialGroup()
-                        .add(285, 285, 285)
-                        .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(29, 29, 29)
+                        .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(loginPanelLayout.createSequentialGroup()
-                                .add(29, 29, 29)
+                                .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(jLabel1)
+                                    .add(jLabel2))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(loginPanelLayout.createSequentialGroup()
-                                        .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                            .add(jLabel1)
-                                            .add(jLabel2))
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                            .add(usernameField)
-                                            .add(passwordField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                    .add(loginPanelLayout.createSequentialGroup()
-                                        .add(3, 3, 3)
-                                        .add(loginButton)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .add(exitButton))))
-                            .add(warningLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(loginPanelLayout.createSequentialGroup()
-                        .add(389, 389, 389)
-                        .add(jButton4)))
+                                    .add(usernameField)
+                                    .add(passwordField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                            .add(loginPanelLayout.createSequentialGroup()
+                                .add(3, 3, 3)
+                                .add(loginButton)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(exitButton))))
+                    .add(warningLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 281, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(333, Short.MAX_VALUE))
         );
         loginPanelLayout.setVerticalGroup(
@@ -220,9 +237,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .add(loginPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(loginButton)
                     .add(exitButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 150, Short.MAX_VALUE)
-                .add(jButton4)
-                .add(129, 129, 129))
+                .addContainerGap(308, Short.MAX_VALUE))
         );
 
         mainPanel.add(loginPanel, "card2");
@@ -272,9 +287,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setText("Submission Date:");
 
         submittedByField.setEditable(false);
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, submittedByField, org.jdesktop.beansbinding.ELProperty.create("${text}"), submittedByField, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
 
         estTotalLabel.setText("Total:");
 
@@ -779,7 +791,7 @@ public class MainFrame extends javax.swing.JFrame {
         lodgeField.setValue(0);
         perdiemField.setValue(0);
         otherExpField.setValue(0);
-        estTotalField.setValue(0);
+//        estTotalField.setValue(0);
         
         chargeToDropDown.setSelectedIndex(0);
     }//GEN-LAST:event_newResetButtonActionPerformed
@@ -801,6 +813,9 @@ public class MainFrame extends javax.swing.JFrame {
         perdiemField.setValue(0);
         otherExpField.setValue(0);
         estTotalField.setValue(0);
+        
+        expReport.empID = currentUser.empID;
+        expReport.requestDate = ft.format(todaysDate);
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -818,24 +833,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void newSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSubmitButtonActionPerformed
-//        String airIn = airTransField.getText();
-//        String gndIn = gndTransField.getText();
-//        System.out.println(airIn);
-//        System.out.println(gndIn);
-//        float air = Float.parseFloat(airIn);
-//        float gnd = Float.parseFloat(gndIn);
-//        
-//        float total = air + gnd;
-//        
-//        System.out.println(total);
-//        
-//        String stotal = String.valueOf(total);
-//        System.out.println("Result: " + stotal);
-//        
-//        estTotalField.setValue(total);
-        ChargeTo cont = new ChargeTo();
+        expReport.estTotal = Float.parseFloat(estTotalField.getText());
         
-        System.out.println(cont.getContractID());
+        newRequestConfirmDialog.setVisible(true);
     }//GEN-LAST:event_newSubmitButtonActionPerformed
 
     private void airTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusLost
@@ -852,6 +852,8 @@ public class MainFrame extends javax.swing.JFrame {
             float other = Float.parseFloat(otherExpField.getText());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
+            
+            expReport.estAir = air;
         }
     }//GEN-LAST:event_airTransFieldFocusLost
 
@@ -869,6 +871,8 @@ public class MainFrame extends javax.swing.JFrame {
             float other = Float.parseFloat(otherExpField.getText());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
+            
+            expReport.estGnd = gnd;
         }
     }//GEN-LAST:event_gndTransFieldFocusLost
 
@@ -886,6 +890,8 @@ public class MainFrame extends javax.swing.JFrame {
             float other = Float.parseFloat(otherExpField.getText());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
+            
+            expReport.estLodge = lodge;
         }
     }//GEN-LAST:event_lodgeFieldFocusLost
 
@@ -903,6 +909,8 @@ public class MainFrame extends javax.swing.JFrame {
             float other = Float.parseFloat(otherExpField.getText());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
+            
+            expReport.estPerdiem = pd;
         }
     }//GEN-LAST:event_perdiemFieldFocusLost
 
@@ -920,6 +928,8 @@ public class MainFrame extends javax.swing.JFrame {
             float other = Float.parseFloat(otherExpField.getText());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
+            
+            expReport.estOther = other;
         }
     }//GEN-LAST:event_otherExpFieldFocusLost
 
@@ -956,10 +966,6 @@ public class MainFrame extends javax.swing.JFrame {
         otherExpField.selectAll();
     }//GEN-LAST:event_otherExpFieldFocusGained
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        newRequestConfirmDialog.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseEntered
         logoutButton.setBackground(Color.RED);
         logoutButton.setFont(new Font("Lucinda Grande", Font.PLAIN, 150));
@@ -971,6 +977,44 @@ public class MainFrame extends javax.swing.JFrame {
         logoutButton.setFont(new Font("Lucinda Grande", Font.PLAIN, 13));
         logoutButton.setText("Logout");
     }//GEN-LAST:event_logoutButtonMouseExited
+
+    private void newReqConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReqConfirmButtonActionPerformed
+        System.out.println(expReport.empID);
+        System.out.println(expReport.estAir);
+        System.out.println(expReport.estGnd);
+        System.out.println(expReport.estLodge);
+        System.out.println(expReport.estPerdiem);
+        System.out.println(expReport.estOther);
+        System.out.println(expReport.estTotal);
+        System.out.println(expReport.requestDate);
+        
+//        ArrayList<TravelExpenseReport> input = new ArrayList();
+//        
+//        System.out.println(input.get(0));
+        
+//        try {
+//            expReport.newEntry(conn, currentUser, input);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+        
+//        newRequestConfirmDialog.dispose();
+//        
+//        airTransField.setValue(0);
+//        gndTransField.setValue(0);
+//        lodgeField.setValue(0);
+//        perdiemField.setValue(0);
+//        otherExpField.setValue(0);
+//        
+//        chargeToDropDown.setSelectedIndex(0);
+//        
+//        homeButtonActionPerformed(evt);
+    }//GEN-LAST:event_newReqConfirmButtonActionPerformed
+
+    private void newReqBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReqBackButtonActionPerformed
+        newRequestConfirmDialog.dispose();
+    }//GEN-LAST:event_newReqBackButtonActionPerformed
 
     
     public static void main(String args[]) {
@@ -1032,7 +1076,6 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
@@ -1052,6 +1095,8 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel managerTabPanel;
     public javax.swing.JPanel masterTabPanel;
     public javax.swing.JButton newButton;
+    public javax.swing.JButton newReqBackButton;
+    public javax.swing.JButton newReqConfirmButton;
     public javax.swing.JDialog newRequestConfirmDialog;
     public javax.swing.JPanel newRequestPanel;
     public javax.swing.JButton newResetButton;
