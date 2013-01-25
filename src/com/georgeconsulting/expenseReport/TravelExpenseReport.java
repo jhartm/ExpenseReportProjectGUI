@@ -9,7 +9,7 @@ import java.util.*;
 public class TravelExpenseReport {
 	int reportID;
 	int empID;
-	int contractID;
+	String contractID;
 	float estAir = 0;
 	float estGnd = 0;
 	float estLodge = 0;
@@ -28,14 +28,26 @@ public class TravelExpenseReport {
 	int requestStatus = 1;
 	int reportStatus = 1;
         
-        ArrayList newReqValues = new ArrayList();
-
-	public void newEntry(DBConnect conn, Employee user, ArrayList input) throws SQLException {
+	public void newEntry(DBConnect conn) throws SQLException {
             String insertInto = "INSERT INTO TravelExpenseReport ";
             String insertColumns = "(empID, contractID, estAir, estGnd, estLodge, estPerdiem, estOther, estTotal, requestDate, statusReport) ";
             String insertValues = "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            
+            PreparedStatement stmt = null;
+            stmt = conn.conn.prepareStatement(insertInto + insertColumns + insertValues);
                 
-            Populate.newEntry(conn.conn, insertInto + insertColumns + insertValues, input);
+            stmt.setInt(1,empID);
+            stmt.setString(2,contractID);
+            stmt.setFloat(3,estAir);
+            stmt.setFloat(4,estGnd);
+            stmt.setFloat(5,estLodge);
+            stmt.setFloat(6,estPerdiem);
+            stmt.setFloat(7,estOther);
+            stmt.setFloat(8,estTotal);
+            stmt.setString(9,requestDate);
+            stmt.setInt(10,reportStatus);
+            
+            stmt.executeUpdate();
 	}
 	
 	public void viewEntryL1() {

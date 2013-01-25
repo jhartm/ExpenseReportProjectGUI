@@ -2,29 +2,6 @@
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.persistence.EntityManager" name="entityManager">
-      <Properties>
-        <Property name="persistenceUnit" type="java.lang.String" value="expenseReport?zeroDateTimeBehavior=convertToNullPU"/>
-      </Properties>
-    </Component>
-    <Component class="javax.persistence.Query" name="chargeToQuery">
-      <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT c FROM ChargeTo c"/>
-        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
-          <ComponentRef name="entityManager"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="java.util.List" name="chargeToList">
-      <Properties>
-        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
-          <ComponentRef name="chargeToQuery"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
-      </AuxValues>
-    </Component>
     <Container class="javax.swing.JDialog" name="newRequestConfirmDialog">
       <Properties>
         <Property name="alwaysOnTop" type="boolean" value="true"/>
@@ -92,6 +69,29 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.persistence.EntityManager" name="entityManager">
+      <Properties>
+        <Property name="persistenceUnit" type="java.lang.String" value="expenseReport?zeroDateTimeBehavior=convertToNullPU"/>
+      </Properties>
+    </Component>
+    <Component class="javax.persistence.Query" name="chargeToQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT c FROM ChargeTo c"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="entityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="chargeToList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="chargeToQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -439,7 +439,7 @@
                                       <Component id="newSubmitButton" min="-2" max="-2" attributes="0"/>
                                       <Component id="newResetButton" min="-2" max="-2" attributes="0"/>
                                       <Component id="submitDateField" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="chargeToDropDown" max="32767" attributes="0"/>
+                                      <Component id="chargeToDropDown" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="139" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -499,7 +499,7 @@
                                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="chargeToDropDown" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -566,6 +566,9 @@
                         <Component class="javax.swing.JTextField" name="submittedByField">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ee" green="ee" red="ee" type="rgb"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="estTotalLabel">
@@ -655,6 +658,9 @@
                         <Component class="javax.swing.JTextField" name="submitDateField">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ee" green="ee" red="ee" type="rgb"/>
+                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="chargeToDropDown">

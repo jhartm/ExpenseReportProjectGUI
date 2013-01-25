@@ -4,6 +4,8 @@ package com.georgeconsulting.expenseReport;
 
 import java.awt.*;
 import java.security.NoSuchAlgorithmException;
+import java.sql.*;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -44,13 +46,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("expenseReport?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
-        chargeToQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ChargeTo c");
-        chargeToList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery.getResultList();
         newRequestConfirmDialog = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
         newReqConfirmButton = new javax.swing.JButton();
         newReqBackButton = new javax.swing.JButton();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("expenseReport?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        chargeToQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ChargeTo c");
+        chargeToList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery.getResultList();
         mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -287,6 +289,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setText("Submission Date:");
 
         submittedByField.setEditable(false);
+        submittedByField.setBackground(new java.awt.Color(238, 238, 238));
 
         estTotalLabel.setText("Total:");
 
@@ -358,6 +361,7 @@ public class MainFrame extends javax.swing.JFrame {
         estTotalField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00;(¤#,##0.00)"))));
 
         submitDateField.setEditable(false);
+        submitDateField.setBackground(new java.awt.Color(238, 238, 238));
 
         org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, chargeToList, chargeToDropDown);
         bindingGroup.addBinding(jComboBoxBinding);
@@ -376,7 +380,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .add(newSubmitButton)
                     .add(newResetButton)
                     .add(submitDateField)
-                    .add(chargeToDropDown, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, chargeToDropDown, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 139, Short.MAX_VALUE)
                 .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(estTotalLabel)
@@ -427,7 +431,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .add(submittedByField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(18, 18, 18)
                                 .add(jLabel3)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(chargeToDropDown, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .add(12, 12, 12)
                 .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -979,7 +983,21 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonMouseExited
 
     private void newReqConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReqConfirmButtonActionPerformed
+        String selectedID = "";
+        String selected = chargeToDropDown.getSelectedItem().toString();
+        for(int i = 0; i < selected.length()-2; i++) {
+            if(selected.substring(i, i+3).equalsIgnoreCase(" | ")) {
+                break;
+            }
+            
+            selectedID = selectedID + selected.charAt(i);
+        }
+        
+        expReport.contractID = selectedID;
+        expReport.reportStatus = 2;
+        
         System.out.println(expReport.empID);
+        System.out.println(expReport.contractID);
         System.out.println(expReport.estAir);
         System.out.println(expReport.estGnd);
         System.out.println(expReport.estLodge);
@@ -988,28 +1006,17 @@ public class MainFrame extends javax.swing.JFrame {
         System.out.println(expReport.estTotal);
         System.out.println(expReport.requestDate);
         
-//        ArrayList<TravelExpenseReport> input = new ArrayList();
-//        
-//        System.out.println(input.get(0));
+        try {
+            expReport.newEntry(conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-//        try {
-//            expReport.newEntry(conn, currentUser, input);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        newRequestConfirmDialog.dispose();
 
+        chargeToDropDown.setSelectedIndex(0);
         
-//        newRequestConfirmDialog.dispose();
-//        
-//        airTransField.setValue(0);
-//        gndTransField.setValue(0);
-//        lodgeField.setValue(0);
-//        perdiemField.setValue(0);
-//        otherExpField.setValue(0);
-//        
-//        chargeToDropDown.setSelectedIndex(0);
-//        
-//        homeButtonActionPerformed(evt);
+        homeButtonActionPerformed(evt);
     }//GEN-LAST:event_newReqConfirmButtonActionPerformed
 
     private void newReqBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReqBackButtonActionPerformed
