@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="lib/beans-binding/beansbinding-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/CopyLibs/org-netbeans-modules-java-j2seproject-copylibstask.jar"/>
+	<classpathentry kind="lib" path="lib/swing-layout/swing-layout-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/eclipselink/eclipselink-2.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/eclipselink/javax.persistence-2.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/eclipselink/org.eclipse.persistence.jpa.jpql_1.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
