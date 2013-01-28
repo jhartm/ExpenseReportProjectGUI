@@ -112,6 +112,15 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         masterTabPanel = new javax.swing.JPanel();
+        empRecord = new javax.swing.JPanel();
+        firstNameUD = new javax.swing.JTextField();
+        lastNameUD = new javax.swing.JTextField();
+        empID = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        updateButton = new javax.swing.JButton();
         logoutTabPanel = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
 
@@ -248,6 +257,12 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         mainPanel.add(loginPanel, "card2");
+
+        userTabPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTabPanelMouseClicked(evt);
+            }
+        });
 
         basicMenuPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         basicMenuPanel.setLayout(new java.awt.CardLayout());
@@ -718,6 +733,76 @@ public class MainFrame extends javax.swing.JFrame {
 
         userTabPanel.addTab("Master User", masterTabPanel);
 
+        jTextField4.setText("jTextField4");
+
+        jLabel9.setText("Firstname");
+
+        jLabel10.setText("Lastname");
+
+        jLabel11.setText("ID #");
+
+        updateButton.setText("Update Information");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout empRecordLayout = new org.jdesktop.layout.GroupLayout(empRecord);
+        empRecord.setLayout(empRecordLayout);
+        empRecordLayout.setHorizontalGroup(
+            empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(empRecordLayout.createSequentialGroup()
+                .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(empRecordLayout.createSequentialGroup()
+                        .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(empRecordLayout.createSequentialGroup()
+                                .add(470, 470, 470)
+                                .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(empRecordLayout.createSequentialGroup()
+                                .add(170, 170, 170)
+                                .add(jLabel9)
+                                .add(69, 69, 69)
+                                .add(jLabel10))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, empRecordLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .add(firstNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(lastNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(134, 134, 134)))
+                        .add(18, 18, 18)
+                        .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(empID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(empRecordLayout.createSequentialGroup()
+                                .add(8, 8, 8)
+                                .add(jLabel11))))
+                    .add(empRecordLayout.createSequentialGroup()
+                        .add(382, 382, 382)
+                        .add(updateButton)))
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+        empRecordLayout.setVerticalGroup(
+            empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(empRecordLayout.createSequentialGroup()
+                .add(98, 98, 98)
+                .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel9)
+                    .add(jLabel10)
+                    .add(jLabel11))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(firstNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lastNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(empID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(105, 105, 105)
+                .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 96, Short.MAX_VALUE)
+                .add(updateButton)
+                .add(78, 78, 78))
+        );
+
+        userTabPanel.addTab("Employee Info", empRecord);
+
         logoutButton.setText("Logout");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -1081,6 +1166,24 @@ public class MainFrame extends javax.swing.JFrame {
         newRequestConfirmDialog.dispose();
     }//GEN-LAST:event_newReqBackButtonActionPerformed
 
+    private void userTabPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTabPanelMouseClicked
+        firstNameUD.setText(currentUser.firstName);
+        lastNameUD.setText(currentUser.lastName);
+    }//GEN-LAST:event_userTabPanelMouseClicked
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        ArrayList updatedInfo = new ArrayList();
+        
+        updatedInfo.add(0,lastNameUD.getText());
+        updatedInfo.add(1,firstNameUD.getText());
+        
+        try {
+            currentUser.updateEmpInfo(conn,updatedInfo);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1130,10 +1233,13 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel deleteRequestPanel;
     public javax.swing.JButton editButton;
     public javax.swing.JPanel editRequestPanel;
+    public javax.swing.JTextField empID;
+    public javax.swing.JPanel empRecord;
     public javax.persistence.EntityManager entityManager;
     public javax.swing.JFormattedTextField estTotalField;
     public javax.swing.JLabel estTotalLabel;
     public javax.swing.JButton exitButton;
+    public javax.swing.JTextField firstNameUD;
     public javax.swing.JFormattedTextField gndTransField;
     public javax.swing.JLabel gndTransLabel;
     public javax.swing.JButton homeButton;
@@ -1142,6 +1248,8 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel11;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -1149,11 +1257,14 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel6;
     public javax.swing.JLabel jLabel7;
     public javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanel3;
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField lastNameUD;
     public javax.swing.JFormattedTextField lodgeField;
     public javax.swing.JLabel lodgeLabel;
     public javax.swing.JButton loginButton;
@@ -1178,6 +1289,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField submitDateField;
     public javax.swing.JTextField submittedByField;
     public javax.swing.JLabel submittedByLabel;
+    public javax.swing.JButton updateButton;
     public javax.swing.JLabel userNameLabel;
     public javax.swing.JTabbedPane userTabPanel;
     public javax.swing.JTextField usernameField;

@@ -1,10 +1,6 @@
 package com.georgeconsulting.expenseReport;
 
 import java.sql.*;
-import java.util.Scanner;
-import java.util.Date;
-import java.text.*;
-import java.util.*;
 
 public class TravelExpenseReport {
 	int reportID;
