@@ -1,7 +1,5 @@
 package com.georgeconsulting.expenseReport;
 
-
-
 import java.awt.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -1184,7 +1182,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

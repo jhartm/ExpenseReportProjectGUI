@@ -1,7 +1,7 @@
 package com.georgeconsulting.expenseReport;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Employee {
 	//Employee information fields
@@ -42,7 +42,9 @@ public class Employee {
             stmt.setString(2, newInfo.get(1).toString());
             stmt.setInt(3, empID);
             
-            
             stmt.executeUpdate();
+            
+            lastName = newInfo.get(0).toString();
+            firstName = newInfo.get(1).toString();
         }
 }
