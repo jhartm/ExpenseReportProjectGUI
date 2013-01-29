@@ -1,10 +1,8 @@
 package com.georgeconsulting.expenseReport;
 
-
-
 import java.awt.*;
 import java.security.NoSuchAlgorithmException;
-import java.sql.*;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
@@ -12,8 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.awt.event.*;
 //import javax.swing.*;
-
-import javax.swing.JButton;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -23,7 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static String temp;
     public String usernameInput;
     public String passwordInput;
-    public TravelExpenseReport expReport;
+    public Report expReport;
 
     /**
      * Creates new form MainFrame
@@ -31,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() throws SQLException {
         conn = new DBConnect();
         newLogin = new Login();
-        expReport = new TravelExpenseReport();
+        expReport = new Report();
 
         initComponents();
     }
@@ -92,9 +88,13 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         deleteRequestPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        viewPendingPanel = new javax.swing.JPanel();
+        viewApprovedPanel = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        viewCompletedPanel = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         viewPendButton = new javax.swing.JButton();
         viewApproveButton = new javax.swing.JButton();
-        viewPendPanel = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -108,6 +108,15 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         masterTabPanel = new javax.swing.JPanel();
+        empRecord = new javax.swing.JPanel();
+        firstNameUD = new javax.swing.JTextField();
+        lastNameUD = new javax.swing.JTextField();
+        empID = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        updateButton = new javax.swing.JButton();
         logoutTabPanel = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
 
@@ -245,6 +254,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         mainPanel.add(loginPanel, "card2");
 
+        userTabPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userTabPanelMouseClicked(evt);
+            }
+        });
+
         basicMenuPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         basicMenuPanel.setLayout(new java.awt.CardLayout());
 
@@ -373,15 +388,16 @@ public class MainFrame extends javax.swing.JFrame {
             newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, newRequestPanelLayout.createSequentialGroup()
                 .add(59, 59, 59)
-                .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jLabel3)
-                    .add(submittedByField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .add(chargeToLabel)
-                    .add(submittedByLabel)
+                .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(jLabel3)
+                        .add(submittedByField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .add(chargeToLabel)
+                        .add(submittedByLabel)
+                        .add(submitDateField)
+                        .add(org.jdesktop.layout.GroupLayout.TRAILING, chargeToDropDown, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(newSubmitButton)
-                    .add(newResetButton)
-                    .add(submitDateField)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, chargeToDropDown, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(newResetButton))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 139, Short.MAX_VALUE)
                 .add(newRequestPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(estTotalLabel)
@@ -497,6 +513,67 @@ public class MainFrame extends javax.swing.JFrame {
 
         basicMenuPanel.add(deleteRequestPanel, "card4");
 
+        viewPendingPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        org.jdesktop.layout.GroupLayout viewPendingPanelLayout = new org.jdesktop.layout.GroupLayout(viewPendingPanel);
+        viewPendingPanel.setLayout(viewPendingPanelLayout);
+        viewPendingPanelLayout.setHorizontalGroup(
+            viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 699, Short.MAX_VALUE)
+        );
+        viewPendingPanelLayout.setVerticalGroup(
+            viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 464, Short.MAX_VALUE)
+        );
+
+        basicMenuPanel.add(viewPendingPanel, "card6");
+
+        viewApprovedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel12.setText("View Approved Panel");
+
+        org.jdesktop.layout.GroupLayout viewApprovedPanelLayout = new org.jdesktop.layout.GroupLayout(viewApprovedPanel);
+        viewApprovedPanel.setLayout(viewApprovedPanelLayout);
+        viewApprovedPanelLayout.setHorizontalGroup(
+            viewApprovedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewApprovedPanelLayout.createSequentialGroup()
+                .add(322, 322, 322)
+                .add(jLabel12)
+                .addContainerGap(247, Short.MAX_VALUE))
+        );
+        viewApprovedPanelLayout.setVerticalGroup(
+            viewApprovedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewApprovedPanelLayout.createSequentialGroup()
+                .add(177, 177, 177)
+                .add(jLabel12)
+                .addContainerGap(271, Short.MAX_VALUE))
+        );
+
+        basicMenuPanel.add(viewApprovedPanel, "card7");
+
+        viewCompletedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel13.setText("View Completed Panel");
+
+        org.jdesktop.layout.GroupLayout viewCompletedPanelLayout = new org.jdesktop.layout.GroupLayout(viewCompletedPanel);
+        viewCompletedPanel.setLayout(viewCompletedPanelLayout);
+        viewCompletedPanelLayout.setHorizontalGroup(
+            viewCompletedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewCompletedPanelLayout.createSequentialGroup()
+                .add(309, 309, 309)
+                .add(jLabel13)
+                .addContainerGap(252, Short.MAX_VALUE))
+        );
+        viewCompletedPanelLayout.setVerticalGroup(
+            viewCompletedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewCompletedPanelLayout.createSequentialGroup()
+                .add(179, 179, 179)
+                .add(jLabel13)
+                .addContainerGap(269, Short.MAX_VALUE))
+        );
+
+        basicMenuPanel.add(viewCompletedPanel, "card8");
+
         viewPendButton.setText("View Pending");
         viewPendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -504,9 +581,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        basicMenuPanel.add(viewPendPanel, "card6");
-
         viewApproveButton.setText("View Approved");
+        viewApproveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewApproveButtonActionPerformed(evt);
+            }
+        });
 
         editButton.setText("Edit Request");
         editButton.addActionListener(new java.awt.event.ActionListener() {
@@ -530,6 +610,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         viewCompleteButton.setText("View Completed");
+        viewCompleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCompleteButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Welcome,");
 
@@ -612,9 +697,6 @@ public class MainFrame extends javax.swing.JFrame {
         jButton1.setText("View All Pending");
 
         jButton2.setText("View All Approved");
-        viewPendPanel.setLayout(new BorderLayout() );
-        JButton butt = new JButton( "TA DA");
-        viewPendPanel.add( butt, BorderLayout.CENTER );
 
         jButton3.setText("View All Completed");
 
@@ -662,6 +744,76 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         userTabPanel.addTab("Master User", masterTabPanel);
+
+        jTextField4.setText("jTextField4");
+
+        jLabel9.setText("Firstname");
+
+        jLabel10.setText("Lastname");
+
+        jLabel11.setText("ID #");
+
+        updateButton.setText("Update Information");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout empRecordLayout = new org.jdesktop.layout.GroupLayout(empRecord);
+        empRecord.setLayout(empRecordLayout);
+        empRecordLayout.setHorizontalGroup(
+            empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(empRecordLayout.createSequentialGroup()
+                .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(empRecordLayout.createSequentialGroup()
+                        .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(empRecordLayout.createSequentialGroup()
+                                .add(470, 470, 470)
+                                .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(empRecordLayout.createSequentialGroup()
+                                .add(170, 170, 170)
+                                .add(jLabel9)
+                                .add(69, 69, 69)
+                                .add(jLabel10))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, empRecordLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .add(firstNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(lastNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 125, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(134, 134, 134)))
+                        .add(18, 18, 18)
+                        .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(empID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 75, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(empRecordLayout.createSequentialGroup()
+                                .add(8, 8, 8)
+                                .add(jLabel11))))
+                    .add(empRecordLayout.createSequentialGroup()
+                        .add(382, 382, 382)
+                        .add(updateButton)))
+                .addContainerGap(243, Short.MAX_VALUE))
+        );
+        empRecordLayout.setVerticalGroup(
+            empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(empRecordLayout.createSequentialGroup()
+                .add(98, 98, 98)
+                .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel9)
+                    .add(jLabel10)
+                    .add(jLabel11))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(empRecordLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(firstNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(lastNameUD, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(empID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(105, 105, 105)
+                .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 96, Short.MAX_VALUE)
+                .add(updateButton)
+                .add(78, 78, 78))
+        );
+
+        userTabPanel.addTab("Employee Info", empRecord);
 
         logoutButton.setText("Logout");
         logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -838,14 +990,9 @@ public class MainFrame extends javax.swing.JFrame {
         basicMenuItems.show(basicMenuPanel, "card3");
     }//GEN-LAST:event_editButtonActionPerformed
 
-    private void viewPendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPendButtonActionPerformed
-        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
-        basicMenuItems.show(basicMenuPanel, "card6");
-    }//GEN-LAST:event_editButtonActionPerformed
-
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
-        basicMenuItems.show(basicMenuPanel, "card4");
+        basicMenuItems.show(basicMenuPanel, "card5");
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
@@ -853,7 +1000,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void newSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSubmitButtonActionPerformed
-        expReport.estTotal = Float.parseFloat(estTotalField.getText());
+        expReport.estTotal = Float.parseFloat(estTotalField.getValue().toString());
         
         newRequestConfirmDialog.setVisible(true);
     }//GEN-LAST:event_newSubmitButtonActionPerformed
@@ -865,15 +1012,13 @@ public class MainFrame extends javax.swing.JFrame {
             airTransField.setText(temp);
         }
         else {
-            float air = Float.parseFloat(airTransField.getText());
-            float gnd = Float.parseFloat(gndTransField.getText());
-            float lodge = Float.parseFloat(lodgeField.getText());
-            float pd = Float.parseFloat(perdiemField.getText());
-            float other = Float.parseFloat(otherExpField.getText());
+            float air = Float.parseFloat(airTransField.getValue().toString());
+            float gnd = Float.parseFloat(gndTransField.getValue().toString());
+            float lodge = Float.parseFloat(lodgeField.getValue().toString());
+            float pd = Float.parseFloat(perdiemField.getValue().toString());
+            float other = Float.parseFloat(otherExpField.getValue().toString());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
-            
-            expReport.estAir = air;
         }
     }//GEN-LAST:event_airTransFieldFocusLost
 
@@ -884,15 +1029,13 @@ public class MainFrame extends javax.swing.JFrame {
             gndTransField.setText(temp);
         }
         else {
-            float air = Float.parseFloat(airTransField.getText());
-            float gnd = Float.parseFloat(gndTransField.getText());
-            float lodge = Float.parseFloat(lodgeField.getText());
-            float pd = Float.parseFloat(perdiemField.getText());
-            float other = Float.parseFloat(otherExpField.getText());
+            float air = Float.parseFloat(airTransField.getValue().toString());
+            float gnd = Float.parseFloat(gndTransField.getValue().toString());
+            float lodge = Float.parseFloat(lodgeField.getValue().toString());
+            float pd = Float.parseFloat(perdiemField.getValue().toString());
+            float other = Float.parseFloat(otherExpField.getValue().toString());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
-            
-            expReport.estGnd = gnd;
         }
     }//GEN-LAST:event_gndTransFieldFocusLost
 
@@ -903,15 +1046,13 @@ public class MainFrame extends javax.swing.JFrame {
             lodgeField.setText(temp);
         }
         else {
-            float air = Float.parseFloat(airTransField.getText());
-            float gnd = Float.parseFloat(gndTransField.getText());
-            float lodge = Float.parseFloat(lodgeField.getText());
-            float pd = Float.parseFloat(perdiemField.getText());
-            float other = Float.parseFloat(otherExpField.getText());
+            float air = Float.parseFloat(airTransField.getValue().toString());
+            float gnd = Float.parseFloat(gndTransField.getValue().toString());
+            float lodge = Float.parseFloat(lodgeField.getValue().toString());
+            float pd = Float.parseFloat(perdiemField.getValue().toString());
+            float other = Float.parseFloat(otherExpField.getValue().toString());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
-            
-            expReport.estLodge = lodge;
         }
     }//GEN-LAST:event_lodgeFieldFocusLost
 
@@ -922,15 +1063,13 @@ public class MainFrame extends javax.swing.JFrame {
             perdiemField.setText(temp);
         }
         else {
-            float air = Float.parseFloat(airTransField.getText());
-            float gnd = Float.parseFloat(gndTransField.getText());
-            float lodge = Float.parseFloat(lodgeField.getText());
-            float pd = Float.parseFloat(perdiemField.getText());
-            float other = Float.parseFloat(otherExpField.getText());
+            float air = Float.parseFloat(airTransField.getValue().toString());
+            float gnd = Float.parseFloat(gndTransField.getValue().toString());
+            float lodge = Float.parseFloat(lodgeField.getValue().toString());
+            float pd = Float.parseFloat(perdiemField.getValue().toString());
+            float other = Float.parseFloat(otherExpField.getValue().toString());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
-            
-            expReport.estPerdiem = pd;
         }
     }//GEN-LAST:event_perdiemFieldFocusLost
 
@@ -941,15 +1080,13 @@ public class MainFrame extends javax.swing.JFrame {
             otherExpField.setText(temp);
         }
         else {
-            float air = Float.parseFloat(airTransField.getText());
-            float gnd = Float.parseFloat(gndTransField.getText());
-            float lodge = Float.parseFloat(lodgeField.getText());
-            float pd = Float.parseFloat(perdiemField.getText());
-            float other = Float.parseFloat(otherExpField.getText());
+            float air = Float.parseFloat(airTransField.getValue().toString());
+            float gnd = Float.parseFloat(gndTransField.getValue().toString());
+            float lodge = Float.parseFloat(lodgeField.getValue().toString());
+            float pd = Float.parseFloat(perdiemField.getValue().toString());
+            float other = Float.parseFloat(otherExpField.getValue().toString());
         
             estTotalField.setValue(air + gnd + lodge + pd + other);
-            
-            expReport.estOther = other;
         }
     }//GEN-LAST:event_otherExpFieldFocusLost
 
@@ -988,8 +1125,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseEntered
         logoutButton.setBackground(Color.RED);
-        logoutButton.setFont(new Font("Lucinda Grande", Font.PLAIN, 150));
-        logoutButton.setText("LOGOUT");
+        logoutButton.setFont(new Font("Lucinda Grande", Font.PLAIN, 125));
+        logoutButton.setText("GET OUT");
     }//GEN-LAST:event_logoutButtonMouseEntered
 
     private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseExited
@@ -1009,18 +1146,13 @@ public class MainFrame extends javax.swing.JFrame {
             selectedID = selectedID + selected.charAt(i);
         }
         
+        expReport.estAir = Float.parseFloat(airTransField.getValue().toString());
+        expReport.estGnd = Float.parseFloat(gndTransField.getValue().toString());
+        expReport.estLodge = Float.parseFloat(lodgeField.getValue().toString());
+        expReport.estPerdiem = Float.parseFloat(perdiemField.getValue().toString());
+        expReport.estOther = Float.parseFloat(otherExpField.getValue().toString());
         expReport.contractID = selectedID;
         expReport.reportStatus = 2;
-        
-        System.out.println(expReport.empID);
-        System.out.println(expReport.contractID);
-        System.out.println(expReport.estAir);
-        System.out.println(expReport.estGnd);
-        System.out.println(expReport.estLodge);
-        System.out.println(expReport.estPerdiem);
-        System.out.println(expReport.estOther);
-        System.out.println(expReport.estTotal);
-        System.out.println(expReport.requestDate);
         
         try {
             expReport.newEntry(conn);
@@ -1032,6 +1164,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         chargeToDropDown.setSelectedIndex(0);
         
+        airTransField.setValue(0);
+        gndTransField.setValue(0);
+        lodgeField.setValue(0);
+        perdiemField.setValue(0);
+        otherExpField.setValue(0);
+        estTotalField.setValue(0);
+        
         homeButtonActionPerformed(evt);
     }//GEN-LAST:event_newReqConfirmButtonActionPerformed
 
@@ -1039,7 +1178,39 @@ public class MainFrame extends javax.swing.JFrame {
         newRequestConfirmDialog.dispose();
     }//GEN-LAST:event_newReqBackButtonActionPerformed
 
-    
+    private void userTabPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTabPanelMouseClicked
+        firstNameUD.setText(currentUser.firstName);
+        lastNameUD.setText(currentUser.lastName);
+    }//GEN-LAST:event_userTabPanelMouseClicked
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        ArrayList updatedInfo = new ArrayList();
+        
+        updatedInfo.add(0,lastNameUD.getText());
+        updatedInfo.add(1,firstNameUD.getText());
+        
+        try {
+            currentUser.updateEmpInfo(conn,updatedInfo);
+        } catch (SQLException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    private void viewPendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPendButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card6");
+    }//GEN-LAST:event_viewPendButtonActionPerformed
+
+    private void viewApproveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApproveButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card7");
+    }//GEN-LAST:event_viewApproveButtonActionPerformed
+
+    private void viewCompleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCompleteButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card8");
+    }//GEN-LAST:event_viewCompleteButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1088,10 +1259,13 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel deleteRequestPanel;
     public javax.swing.JButton editButton;
     public javax.swing.JPanel editRequestPanel;
+    public javax.swing.JTextField empID;
+    public javax.swing.JPanel empRecord;
     public javax.persistence.EntityManager entityManager;
     public javax.swing.JFormattedTextField estTotalField;
     public javax.swing.JLabel estTotalLabel;
     public javax.swing.JButton exitButton;
+    public javax.swing.JTextField firstNameUD;
     public javax.swing.JFormattedTextField gndTransField;
     public javax.swing.JLabel gndTransLabel;
     public javax.swing.JButton homeButton;
@@ -1100,6 +1274,10 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel11;
+    public javax.swing.JLabel jLabel12;
+    public javax.swing.JLabel jLabel13;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -1107,7 +1285,10 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel6;
     public javax.swing.JLabel jLabel7;
     public javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel2;
+    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField lastNameUD;
     public javax.swing.JFormattedTextField lodgeField;
     public javax.swing.JLabel lodgeLabel;
     public javax.swing.JButton loginButton;
@@ -1132,14 +1313,18 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField submitDateField;
     public javax.swing.JTextField submittedByField;
     public javax.swing.JLabel submittedByLabel;
+    public javax.swing.JButton updateButton;
     public javax.swing.JLabel userNameLabel;
     public javax.swing.JTabbedPane userTabPanel;
     public javax.swing.JTextField usernameField;
     public javax.swing.JButton viewApproveButton;
+    public javax.swing.JPanel viewApprovedPanel;
     public javax.swing.JButton viewCompleteButton;
+    public javax.swing.JPanel viewCompletedPanel;
     public javax.swing.JButton viewPendButton;
-    public javax.swing.JPanel viewPendPanel;
+    public javax.swing.JPanel viewPendingPanel;
     public javax.swing.JLabel warningLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
+

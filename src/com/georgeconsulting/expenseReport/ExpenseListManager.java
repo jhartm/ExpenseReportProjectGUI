@@ -1,11 +1,6 @@
 package com.georgeconsulting.expenseReport;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import java.sql.PreparedStatement;
-
 import javax.sql.rowset.JdbcRowSet;
 import com.sun.rowset.JdbcRowSetImpl;
 
@@ -14,7 +9,7 @@ public class ExpenseListManager {
 
     public  ExpenseListManager() {
     	
-    	//FIX FIX FIX - move this to a shared singleton
+    	//FIX FIX FIX - move connection to a shared singleton
         try {
 			conn = new DBConnect();
 		} catch (SQLException e) {
