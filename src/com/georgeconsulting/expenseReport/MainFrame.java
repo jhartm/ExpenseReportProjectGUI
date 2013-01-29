@@ -5,8 +5,6 @@ package com.georgeconsulting.expenseReport;
 import java.awt.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
@@ -14,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.awt.event.*;
 //import javax.swing.*;
+
+import javax.swing.JButton;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -94,6 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         viewPendButton = new javax.swing.JButton();
         viewApproveButton = new javax.swing.JButton();
+        viewPendPanel = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -497,6 +498,13 @@ public class MainFrame extends javax.swing.JFrame {
         basicMenuPanel.add(deleteRequestPanel, "card4");
 
         viewPendButton.setText("View Pending");
+        viewPendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPendButtonActionPerformed(evt);
+            }
+        });
+
+        basicMenuPanel.add(viewPendPanel, "card6");
 
         viewApproveButton.setText("View Approved");
 
@@ -604,6 +612,9 @@ public class MainFrame extends javax.swing.JFrame {
         jButton1.setText("View All Pending");
 
         jButton2.setText("View All Approved");
+        viewPendPanel.setLayout(new BorderLayout() );
+        JButton butt = new JButton( "TA DA");
+        viewPendPanel.add( butt, BorderLayout.CENTER );
 
         jButton3.setText("View All Completed");
 
@@ -827,9 +838,14 @@ public class MainFrame extends javax.swing.JFrame {
         basicMenuItems.show(basicMenuPanel, "card3");
     }//GEN-LAST:event_editButtonActionPerformed
 
+    private void viewPendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPendButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card6");
+    }//GEN-LAST:event_editButtonActionPerformed
+
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
-        basicMenuItems.show(basicMenuPanel, "card5");
+        basicMenuItems.show(basicMenuPanel, "card4");
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
@@ -1122,6 +1138,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JButton viewApproveButton;
     public javax.swing.JButton viewCompleteButton;
     public javax.swing.JButton viewPendButton;
+    public javax.swing.JPanel viewPendPanel;
     public javax.swing.JLabel warningLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
