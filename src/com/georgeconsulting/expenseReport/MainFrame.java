@@ -2,8 +2,6 @@ package com.georgeconsulting.expenseReport;
 
 import java.awt.*;
 import java.security.NoSuchAlgorithmException;
-import java.sql.*;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,7 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static String temp;
     public String usernameInput;
     public String passwordInput;
-    public TravelExpenseReport expReport;
+    public Report expReport;
 
     /**
      * Creates new form MainFrame
@@ -29,7 +27,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() throws SQLException {
         conn = new DBConnect();
         newLogin = new Login();
-        expReport = new TravelExpenseReport();
+        expReport = new Report();
 
         initComponents();
     }
@@ -91,10 +89,10 @@ public class MainFrame extends javax.swing.JFrame {
         deleteRequestPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         viewPendingPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        viewApprovedPanel = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        viewCompletedPanel = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         viewPendButton = new javax.swing.JButton();
         viewApproveButton = new javax.swing.JButton();
         editButton = new javax.swing.JButton();
@@ -517,67 +515,78 @@ public class MainFrame extends javax.swing.JFrame {
 
         viewPendingPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         org.jdesktop.layout.GroupLayout viewPendingPanelLayout = new org.jdesktop.layout.GroupLayout(viewPendingPanel);
         viewPendingPanel.setLayout(viewPendingPanelLayout);
         viewPendingPanelLayout.setHorizontalGroup(
             viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(viewPendingPanelLayout.createSequentialGroup()
-                .add(50, 50, 50)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+            .add(0, 699, Short.MAX_VALUE)
         );
         viewPendingPanelLayout.setVerticalGroup(
             viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, viewPendingPanelLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(19, 19, 19))
+            .add(0, 464, Short.MAX_VALUE)
         );
 
         basicMenuPanel.add(viewPendingPanel, "card6");
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 703, Short.MAX_VALUE)
+        viewApprovedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel12.setText("View Approved Panel");
+
+        org.jdesktop.layout.GroupLayout viewApprovedPanelLayout = new org.jdesktop.layout.GroupLayout(viewApprovedPanel);
+        viewApprovedPanel.setLayout(viewApprovedPanelLayout);
+        viewApprovedPanelLayout.setHorizontalGroup(
+            viewApprovedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewApprovedPanelLayout.createSequentialGroup()
+                .add(322, 322, 322)
+                .add(jLabel12)
+                .addContainerGap(247, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 468, Short.MAX_VALUE)
+        viewApprovedPanelLayout.setVerticalGroup(
+            viewApprovedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewApprovedPanelLayout.createSequentialGroup()
+                .add(177, 177, 177)
+                .add(jLabel12)
+                .addContainerGap(271, Short.MAX_VALUE))
         );
 
-        basicMenuPanel.add(jPanel1, "card7");
+        basicMenuPanel.add(viewApprovedPanel, "card7");
 
-        org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 703, Short.MAX_VALUE)
+        viewCompletedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel13.setText("View Completed Panel");
+
+        org.jdesktop.layout.GroupLayout viewCompletedPanelLayout = new org.jdesktop.layout.GroupLayout(viewCompletedPanel);
+        viewCompletedPanel.setLayout(viewCompletedPanelLayout);
+        viewCompletedPanelLayout.setHorizontalGroup(
+            viewCompletedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewCompletedPanelLayout.createSequentialGroup()
+                .add(309, 309, 309)
+                .add(jLabel13)
+                .addContainerGap(252, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 468, Short.MAX_VALUE)
+        viewCompletedPanelLayout.setVerticalGroup(
+            viewCompletedPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(viewCompletedPanelLayout.createSequentialGroup()
+                .add(179, 179, 179)
+                .add(jLabel13)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
-        basicMenuPanel.add(jPanel3, "card8");
+        basicMenuPanel.add(viewCompletedPanel, "card8");
 
         viewPendButton.setText("View Pending");
+        viewPendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPendButtonActionPerformed(evt);
+            }
+        });
 
         viewApproveButton.setText("View Approved");
+        viewApproveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewApproveButtonActionPerformed(evt);
+            }
+        });
 
         editButton.setText("Edit Request");
         editButton.addActionListener(new java.awt.event.ActionListener() {
@@ -601,6 +610,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         viewCompleteButton.setText("View Completed");
+        viewCompleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCompleteButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Welcome,");
 
@@ -1111,8 +1125,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseEntered
         logoutButton.setBackground(Color.RED);
-        logoutButton.setFont(new Font("Lucinda Grande", Font.PLAIN, 150));
-        logoutButton.setText("LOGOUT");
+        logoutButton.setFont(new Font("Lucinda Grande", Font.PLAIN, 125));
+        logoutButton.setText("GET OUT");
     }//GEN-LAST:event_logoutButtonMouseEntered
 
     private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseExited
@@ -1182,6 +1196,21 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    private void viewPendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPendButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card6");
+    }//GEN-LAST:event_viewPendButtonActionPerformed
+
+    private void viewApproveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApproveButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card7");
+    }//GEN-LAST:event_viewApproveButtonActionPerformed
+
+    private void viewCompleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCompleteButtonActionPerformed
+        CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
+        basicMenuItems.show(basicMenuPanel, "card8");
+    }//GEN-LAST:event_viewCompleteButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1247,6 +1276,8 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
+    public javax.swing.JLabel jLabel12;
+    public javax.swing.JLabel jLabel13;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -1255,11 +1286,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel7;
     public javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabel9;
-    public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    public javax.swing.JPanel jPanel3;
-    public javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField4;
     public javax.swing.JTextField lastNameUD;
     public javax.swing.JFormattedTextField lodgeField;
@@ -1291,7 +1318,9 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTabbedPane userTabPanel;
     public javax.swing.JTextField usernameField;
     public javax.swing.JButton viewApproveButton;
+    public javax.swing.JPanel viewApprovedPanel;
     public javax.swing.JButton viewCompleteButton;
+    public javax.swing.JPanel viewCompletedPanel;
     public javax.swing.JButton viewPendButton;
     public javax.swing.JPanel viewPendingPanel;
     public javax.swing.JLabel warningLabel;

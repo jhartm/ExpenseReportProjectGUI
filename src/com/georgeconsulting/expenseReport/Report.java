@@ -2,7 +2,7 @@ package com.georgeconsulting.expenseReport;
 
 import java.sql.*;
 
-public class TravelExpenseReport {
+public class Report {
 	int reportID;
 	int empID;
 	String contractID;
@@ -49,4 +49,6 @@ public class TravelExpenseReport {
 	public void viewEntryL1() {
 		
 	}
+
+    
 }
