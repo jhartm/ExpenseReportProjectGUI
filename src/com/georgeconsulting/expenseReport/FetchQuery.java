@@ -11,7 +11,7 @@ public class FetchQuery {
     public FetchQuery(Connection conn, String queryStmt) throws SQLException {
         stmt = conn.prepareStatement(queryStmt);
 		
-	//Sets result set with desired query
+	//Fills resultset with desired query
 	rs = stmt.executeQuery();
     }
 }
