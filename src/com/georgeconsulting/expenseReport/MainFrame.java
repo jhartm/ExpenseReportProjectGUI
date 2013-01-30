@@ -5,9 +5,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.GroupLayout;
+import javax.swing.JTable;
 //import java.awt.event.*;
 //import javax.swing.*;
 
@@ -20,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
     public String usernameInput;
     public String passwordInput;
     public Report expReport;
+    ExpenseListManager pendingELM = new ExpenseListManager();
 
     /**
      * Creates new form MainFrame
@@ -1197,6 +1200,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void viewPendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPendButtonActionPerformed
+        pendingELM.viewBecameActive();
+        viewPendingPanel.add( new JTable(pendingELM) );
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
         basicMenuItems.show(basicMenuPanel, "card6");
     }//GEN-LAST:event_viewPendButtonActionPerformed
