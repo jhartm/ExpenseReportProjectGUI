@@ -51,6 +51,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "TravelExpenseReport.findByUploads", query = "SELECT t FROM TravelExpenseReport t WHERE t.uploads = :uploads"),
     @NamedQuery(name = "TravelExpenseReport.findByStatusRequest", query = "SELECT t FROM TravelExpenseReport t WHERE t.statusRequest = :statusRequest"),
     @NamedQuery(name = "TravelExpenseReport.findByStatusReport", query = "SELECT t FROM TravelExpenseReport t WHERE t.statusReport = :statusReport")})
+
 public class TravelExpenseReport implements Serializable {
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);

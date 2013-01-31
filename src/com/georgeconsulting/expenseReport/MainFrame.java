@@ -5,7 +5,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.awt.event.*;
@@ -557,11 +556,6 @@ public class MainFrame extends javax.swing.JFrame {
         columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        viewReportTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                viewReportTableMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(viewReportTable);
         viewReportTable.getColumnModel().getColumn(0).setResizable(false);
         viewReportTable.getColumnModel().getColumn(1).setResizable(false);
@@ -958,7 +952,7 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         userTabPanel.setSelectedComponent(basicTabPanel);
 
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
@@ -966,7 +960,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         usernameField.setText("");
         passwordField.setText("");
-        
+
         usernameInput = "";
         passwordInput = "";
 
@@ -976,7 +970,7 @@ public class MainFrame extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             if (currentUser.privLevel == 1) {
                 userTabPanel.setEnabledAt(1, false);
                 userTabPanel.setEnabledAt(2, false);
@@ -989,8 +983,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             CardLayout cl = (CardLayout) (mainPanel.getLayout());
             cl.next(mainPanel);
-        }
-        else {
+        } else {
             newLogin.validUser = false;
             warningLabel.setText("*** INVALID USERNAME/PASSWORD ***");
         }
@@ -1002,7 +995,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         userTabPanel.setEnabledAt(1, true);
         userTabPanel.setEnabledAt(2, true);
-        
+
         warningLabel.setText("");
         newLogin.validUser = false;
     }//GEN-LAST:event_logoutButtonPressed
@@ -1033,28 +1026,28 @@ public class MainFrame extends javax.swing.JFrame {
         perdiemField.setValue(0);
         otherExpField.setValue(0);
 //        estTotalField.setValue(0);
-        
+
         chargeToDropDown.setSelectedIndex(0);
     }//GEN-LAST:event_newResetButtonActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
         basicMenuItems.show(basicMenuPanel, "card2");
-        
+
         submittedByField.setText(currentUser.firstName + " " + currentUser.lastName);
-        
+
         Date todaysDate = new Date();
         SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         submitDateField.setText(ft.format(todaysDate));
-        
+
         airTransField.setValue(0);
         gndTransField.setValue(0);
         lodgeField.setValue(0);
         perdiemField.setValue(0);
         otherExpField.setValue(0);
         estTotalField.setValue(0);
-        
+
         expReport.empID = currentUser.empID;
         expReport.requestDate = ft.format(todaysDate);
     }//GEN-LAST:event_newButtonActionPerformed
@@ -1075,91 +1068,86 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void newSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSubmitButtonActionPerformed
         expReport.estTotal = Float.parseFloat(estTotalField.getValue().toString());
-        
+
         newRequestConfirmDialog.setVisible(true);
     }//GEN-LAST:event_newSubmitButtonActionPerformed
 
     private void airTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_airTransFieldFocusLost
         temp = airTransField.getText();
-        
-        if(airTransField.getText().equals("")) {
+
+        if (airTransField.getText().equals("")) {
             airTransField.setText(temp);
-        }
-        else {
+        } else {
             float air = Float.parseFloat(airTransField.getValue().toString());
             float gnd = Float.parseFloat(gndTransField.getValue().toString());
             float lodge = Float.parseFloat(lodgeField.getValue().toString());
             float pd = Float.parseFloat(perdiemField.getValue().toString());
             float other = Float.parseFloat(otherExpField.getValue().toString());
-        
+
             estTotalField.setValue(air + gnd + lodge + pd + other);
         }
     }//GEN-LAST:event_airTransFieldFocusLost
 
     private void gndTransFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gndTransFieldFocusLost
         temp = gndTransField.getText();
-        
-        if(gndTransField.getText().equals("")) {
+
+        if (gndTransField.getText().equals("")) {
             gndTransField.setText(temp);
-        }
-        else {
+        } else {
             float air = Float.parseFloat(airTransField.getValue().toString());
             float gnd = Float.parseFloat(gndTransField.getValue().toString());
             float lodge = Float.parseFloat(lodgeField.getValue().toString());
             float pd = Float.parseFloat(perdiemField.getValue().toString());
             float other = Float.parseFloat(otherExpField.getValue().toString());
-        
+
             estTotalField.setValue(air + gnd + lodge + pd + other);
         }
     }//GEN-LAST:event_gndTransFieldFocusLost
 
     private void lodgeFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lodgeFieldFocusLost
         temp = lodgeField.getText();
-        
-        if(lodgeField.getText().equals("")) {
+
+        if (lodgeField.getText().equals("")) {
             lodgeField.setText(temp);
-        }
-        else {
+        } else {
             float air = Float.parseFloat(airTransField.getValue().toString());
             float gnd = Float.parseFloat(gndTransField.getValue().toString());
             float lodge = Float.parseFloat(lodgeField.getValue().toString());
             float pd = Float.parseFloat(perdiemField.getValue().toString());
             float other = Float.parseFloat(otherExpField.getValue().toString());
-        
+
             estTotalField.setValue(air + gnd + lodge + pd + other);
         }
     }//GEN-LAST:event_lodgeFieldFocusLost
 
     private void perdiemFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_perdiemFieldFocusLost
         temp = perdiemField.getText();
-        
-        if(perdiemField.getText().equals("")) {
+
+        if (perdiemField.getText().equals("")) {
             perdiemField.setText(temp);
-        }
-        else {
+        } else {
             float air = Float.parseFloat(airTransField.getValue().toString());
             float gnd = Float.parseFloat(gndTransField.getValue().toString());
             float lodge = Float.parseFloat(lodgeField.getValue().toString());
             float pd = Float.parseFloat(perdiemField.getValue().toString());
             float other = Float.parseFloat(otherExpField.getValue().toString());
-        
+
             estTotalField.setValue(air + gnd + lodge + pd + other);
         }
     }//GEN-LAST:event_perdiemFieldFocusLost
 
     private void otherExpFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_otherExpFieldFocusLost
         temp = otherExpField.getText();
-        
-        if(otherExpField.getText().equals("")) {
+
+        if (otherExpField.getText().equals("")) {
             otherExpField.setText(temp);
-        }
-        else {
+        } else {
             float air = Float.parseFloat(airTransField.getValue().toString());
             float gnd = Float.parseFloat(gndTransField.getValue().toString());
             float lodge = Float.parseFloat(lodgeField.getValue().toString());
             float pd = Float.parseFloat(perdiemField.getValue().toString());
             float other = Float.parseFloat(otherExpField.getValue().toString());
-        
+
             estTotalField.setValue(air + gnd + lodge + pd + other);
         }
     }//GEN-LAST:event_otherExpFieldFocusLost
@@ -1212,14 +1200,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void newReqConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newReqConfirmButtonActionPerformed
         String selectedID = "";
         String selected = chargeToDropDown.getSelectedItem().toString();
-        for(int i = 0; i < selected.length()-2; i++) {
-            if(selected.substring(i, i+3).equalsIgnoreCase(" | ")) {
+        for (int i = 0; i < selected.length() - 2; i++) {
+            if (selected.substring(i, i + 3).equalsIgnoreCase(" | ")) {
                 break;
             }
-            
+
             selectedID = selectedID + selected.charAt(i);
         }
-        
+
         expReport.estAir = Float.parseFloat(airTransField.getValue().toString());
         expReport.estGnd = Float.parseFloat(gndTransField.getValue().toString());
         expReport.estLodge = Float.parseFloat(lodgeField.getValue().toString());
@@ -1227,24 +1215,24 @@ public class MainFrame extends javax.swing.JFrame {
         expReport.estOther = Float.parseFloat(otherExpField.getValue().toString());
         expReport.contractID = selectedID;
         expReport.reportStatus = 2;
-        
+
         try {
             expReport.newEntry(conn);
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         newRequestConfirmDialog.dispose();
 
         chargeToDropDown.setSelectedIndex(0);
-        
+
         airTransField.setValue(0);
         gndTransField.setValue(0);
         lodgeField.setValue(0);
         perdiemField.setValue(0);
         otherExpField.setValue(0);
         estTotalField.setValue(0);
-        
+
         homeButtonActionPerformed(evt);
     }//GEN-LAST:event_newReqConfirmButtonActionPerformed
 
@@ -1259,12 +1247,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         ArrayList updatedInfo = new ArrayList();
-        
-        updatedInfo.add(0,lastNameUD.getText());
-        updatedInfo.add(1,firstNameUD.getText());
-        
+
+        updatedInfo.add(0, lastNameUD.getText());
+        updatedInfo.add(1, firstNameUD.getText());
+
         try {
-            currentUser.updateEmpInfo(conn,updatedInfo);
+            currentUser.updateEmpInfo(conn, updatedInfo);
         } catch (SQLException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1284,10 +1272,6 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
         basicMenuItems.show(basicMenuPanel, "card8");
     }//GEN-LAST:event_viewCompleteButtonActionPerformed
-
-    private void viewReportTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewReportTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewReportTableMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1324,6 +1308,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JFormattedTextField airTransField;
     public javax.swing.JLabel airTransLabel;
@@ -1409,4 +1394,3 @@ public class MainFrame extends javax.swing.JFrame {
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
-
