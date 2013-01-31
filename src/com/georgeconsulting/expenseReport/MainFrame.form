@@ -92,6 +92,24 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.ChargeTo&gt;"/>
       </AuxValues>
     </Component>
+    <Component class="javax.persistence.Query" name="travelExpenseReportQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT t FROM TravelExpenseReport t"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="entityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="travelExpenseReportList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="travelExpenseReportQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.georgeconsulting.expenseReport.TravelExpenseReport&gt;"/>
+      </AuxValues>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -777,14 +795,138 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <EmptySpace min="0" pref="699" max="32767" attributes="0"/>
+                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" min="-2" pref="665" max="-2" attributes="0"/>
+                                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
+                              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="viewReportTable">
+                              <Properties>
+                                <Property name="autoResizeMode" type="int" value="0"/>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="150" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                              <BindingProperties>
+                                <BindingProperty name="elements" source="travelExpenseReportList" target="viewReportTable" targetPath="elements" updateStrategy="0" immediately="true">
+                                  <Subbinding sourcePath="${reportID}">
+                                    <BindingParameter name="NAME" value="Report ID"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estAir}">
+                                    <BindingParameter name="NAME" value="Est Air"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estGnd}">
+                                    <BindingParameter name="NAME" value="Est Gnd"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estLodge}">
+                                    <BindingParameter name="NAME" value="Est Lodge"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estPerdiem}">
+                                    <BindingParameter name="NAME" value="Est Perdiem"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estOther}">
+                                    <BindingParameter name="NAME" value="Est Other"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estTotal}">
+                                    <BindingParameter name="NAME" value="Est Total"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${requestDate}">
+                                    <BindingParameter name="NAME" value="Request Date"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                </BindingProperty>
+                              </BindingProperties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewReportTableMouseClicked"/>
+                              </Events>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                      </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="viewApprovedPanel">
                       <Properties>

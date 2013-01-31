@@ -52,6 +52,8 @@ public class MainFrame extends javax.swing.JFrame {
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("expenseReport?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         chargeToQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ChargeTo c");
         chargeToList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery.getResultList();
+        travelExpenseReportQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT t FROM TravelExpenseReport t");
+        travelExpenseReportList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : travelExpenseReportQuery.getResultList();
         mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -92,6 +94,8 @@ public class MainFrame extends javax.swing.JFrame {
         deleteRequestPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         viewPendingPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        viewReportTable = new javax.swing.JTable();
         viewApprovedPanel = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         viewCompletedPanel = new javax.swing.JPanel();
@@ -518,15 +522,85 @@ public class MainFrame extends javax.swing.JFrame {
 
         viewPendingPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        viewReportTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        viewReportTable.getTableHeader().setReorderingAllowed(false);
+
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, travelExpenseReportList, viewReportTable);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${reportID}"));
+        columnBinding.setColumnName("Report ID");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estAir}"));
+        columnBinding.setColumnName("Est Air");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estGnd}"));
+        columnBinding.setColumnName("Est Gnd");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estLodge}"));
+        columnBinding.setColumnName("Est Lodge");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estPerdiem}"));
+        columnBinding.setColumnName("Est Perdiem");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estOther}"));
+        columnBinding.setColumnName("Est Other");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estTotal}"));
+        columnBinding.setColumnName("Est Total");
+        columnBinding.setColumnClass(java.math.BigDecimal.class);
+        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${requestDate}"));
+        columnBinding.setColumnName("Request Date");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding.setEditable(false);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        viewReportTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewReportTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(viewReportTable);
+        viewReportTable.getColumnModel().getColumn(0).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(1).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(1).setPreferredWidth(150);
+        viewReportTable.getColumnModel().getColumn(2).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(2).setPreferredWidth(150);
+        viewReportTable.getColumnModel().getColumn(3).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(3).setPreferredWidth(150);
+        viewReportTable.getColumnModel().getColumn(4).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+        viewReportTable.getColumnModel().getColumn(5).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+        viewReportTable.getColumnModel().getColumn(6).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(6).setPreferredWidth(150);
+        viewReportTable.getColumnModel().getColumn(7).setResizable(false);
+        viewReportTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+
         org.jdesktop.layout.GroupLayout viewPendingPanelLayout = new org.jdesktop.layout.GroupLayout(viewPendingPanel);
         viewPendingPanel.setLayout(viewPendingPanelLayout);
         viewPendingPanelLayout.setHorizontalGroup(
             viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 699, Short.MAX_VALUE)
+            .add(viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(viewPendingPanelLayout.createSequentialGroup()
+                    .add(17, 17, 17)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 665, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(17, Short.MAX_VALUE)))
         );
         viewPendingPanelLayout.setVerticalGroup(
             viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(0, 464, Short.MAX_VALUE)
+            .add(viewPendingPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(viewPendingPanelLayout.createSequentialGroup()
+                    .add(22, 22, 22)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(7, Short.MAX_VALUE)))
         );
 
         basicMenuPanel.add(viewPendingPanel, "card6");
@@ -1216,6 +1290,10 @@ public class MainFrame extends javax.swing.JFrame {
         basicMenuItems.show(basicMenuPanel, "card8");
     }//GEN-LAST:event_viewCompleteButtonActionPerformed
 
+    private void viewReportTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewReportTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewReportTableMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1292,6 +1370,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel2;
+    public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField jTextField4;
     public javax.swing.JTextField lastNameUD;
     public javax.swing.JFormattedTextField lodgeField;
@@ -1318,6 +1397,8 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField submitDateField;
     public javax.swing.JTextField submittedByField;
     public javax.swing.JLabel submittedByLabel;
+    public java.util.List<com.georgeconsulting.expenseReport.TravelExpenseReport> travelExpenseReportList;
+    public javax.persistence.Query travelExpenseReportQuery;
     public javax.swing.JButton updateButton;
     public javax.swing.JLabel userNameLabel;
     public javax.swing.JTabbedPane userTabPanel;
@@ -1328,6 +1409,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel viewCompletedPanel;
     public javax.swing.JButton viewPendButton;
     public javax.swing.JPanel viewPendingPanel;
+    public javax.swing.JTable viewReportTable;
     public javax.swing.JLabel warningLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
