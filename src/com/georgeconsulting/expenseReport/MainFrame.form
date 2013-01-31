@@ -920,9 +920,6 @@
                                   </Subbinding>
                                 </BindingProperty>
                               </BindingProperties>
-                              <Events>
-                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="viewReportTableMouseClicked"/>
-                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
