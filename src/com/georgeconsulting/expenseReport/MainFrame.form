@@ -348,7 +348,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -797,9 +797,9 @@
                               <EmptySpace min="0" pref="699" max="32767" attributes="0"/>
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="665" max="-2" attributes="0"/>
-                                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" pref="687" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -809,9 +809,9 @@
                               <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" pref="452" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -943,28 +943,128 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="247" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="687" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="271" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" pref="452" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel12">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="View Approved Panel"/>
-                          </Properties>
-                        </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jTable1">
+                              <Properties>
+                                <Property name="autoResizeMode" type="int" value="0"/>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="75" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                              <BindingProperties>
+                                <BindingProperty name="elements" source="travelExpenseReportList" target="jTable1" targetPath="elements" updateStrategy="0" immediately="true">
+                                  <Subbinding sourcePath="${reportID}">
+                                    <BindingParameter name="NAME" value="Report ID"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estAir}">
+                                    <BindingParameter name="NAME" value="Est Air"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estGnd}">
+                                    <BindingParameter name="NAME" value="Est Gnd"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estLodge}">
+                                    <BindingParameter name="NAME" value="Est Lodge"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estPerdiem}">
+                                    <BindingParameter name="NAME" value="Est Perdiem"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estOther}">
+                                    <BindingParameter name="NAME" value="Est Other"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estTotal}">
+                                    <BindingParameter name="NAME" value="Est Total"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${requestDate}">
+                                    <BindingParameter name="NAME" value="Request Date"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                </BindingProperty>
+                              </BindingProperties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="viewCompletedPanel">
@@ -985,28 +1085,128 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="309" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="252" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="687" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="269" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="452" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="jLabel13">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="View Completed Panel"/>
-                          </Properties>
-                        </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jTable2">
+                              <Properties>
+                                <Property name="autoResizeMode" type="int" value="0"/>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="75" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="125" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                              <BindingProperties>
+                                <BindingProperty name="elements" source="travelExpenseReportList" target="jTable2" targetPath="elements" updateStrategy="0" immediately="true">
+                                  <Subbinding sourcePath="${reportID}">
+                                    <BindingParameter name="NAME" value="Report ID"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estAir}">
+                                    <BindingParameter name="NAME" value="Est Air"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estGnd}">
+                                    <BindingParameter name="NAME" value="Est Gnd"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estLodge}">
+                                    <BindingParameter name="NAME" value="Est Lodge"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estOther}">
+                                    <BindingParameter name="NAME" value="Est Other"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estPerdiem}">
+                                    <BindingParameter name="NAME" value="Est Perdiem"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${estTotal}">
+                                    <BindingParameter name="NAME" value="Est Total"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.math.BigDecimal.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                  <Subbinding sourcePath="${requestDate}">
+                                    <BindingParameter name="NAME" value="Request Date"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="java.util.Date.class"/>
+                                    <BindingParameter name="javax.swing.binding.ParameterKeys.EDITABLE" value="false"/>
+                                  </Subbinding>
+                                </BindingProperty>
+                              </BindingProperties>
+                            </Component>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                   </SubComponents>

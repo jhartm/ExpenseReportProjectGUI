@@ -33,7 +33,7 @@ public class ExpenseListManager extends DefaultTableModel implements TableModel 
     ResultSetMetaData metadata;
     int numberOfRows;
     int numberOfCols;
-	JComboBox<ReportState> statusList;
+	JComboBox statusList;
 	JTable table;
 	String columnNames[] = { "Emp. ID", "Contract", "Est. Air", "Est. Ground", "Est. Lodging", "Est. Per Diem", "Est. Other",
 			"Est. Total", "Request Date", "Status Report" };
@@ -177,7 +177,7 @@ public class ExpenseListManager extends DefaultTableModel implements TableModel 
 	        TableColumn column = table.getColumnModel().getColumn(8);
 //	        column.setCellRenderer( new DateRenderer() );
 	 
-	    	statusList = new JComboBox<ReportState>(ReportState.values());
+	    	statusList = new JComboBox(ReportState.values());
 	    	statusList.setMaximumSize(new Dimension(150, 30));
 	    	//Create the scroll pane and add the table to it.
 	        JScrollPane scrollPane = new JScrollPane(table);
