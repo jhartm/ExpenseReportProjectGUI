@@ -5,6 +5,7 @@ public enum ReportState {
 	APPROVED_REPORT( 2 ),
 	REJECTED_REPORT( 3 );
 	
+	String [] pretties = { "", "Pending Reports", "Approved Reports", "Rejected Reports" };
 	int value;
 	
 	private ReportState( int value ) {
@@ -15,4 +16,7 @@ public enum ReportState {
 		return value;
 	}
 	
+	public String toString(){
+		return pretties[value];
+	}
 }
