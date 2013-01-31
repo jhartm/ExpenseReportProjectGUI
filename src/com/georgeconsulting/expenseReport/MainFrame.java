@@ -4,7 +4,9 @@ import java.awt.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +25,8 @@ public class MainFrame extends javax.swing.JFrame {
     public String passwordInput;
     public Report expReport;
     ExpenseListManager pendingELM = new ExpenseListManager();
-
+    org.jdesktop.swingbinding.JTableBinding jTableBinding;
+    
     /**
      * Creates new form MainFrame
      */
@@ -52,7 +55,7 @@ public class MainFrame extends javax.swing.JFrame {
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("expenseReport?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         chargeToQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT c FROM ChargeTo c");
         chargeToList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : chargeToQuery.getResultList();
-        travelExpenseReportQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT t FROM TravelExpenseReport t");
+        travelExpenseReportQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createNamedQuery("TravelExpenseReport.findAll");
         travelExpenseReportList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : travelExpenseReportQuery.getResultList();
         mainPanel = new javax.swing.JPanel();
         loginPanel = new javax.swing.JPanel();
@@ -525,7 +528,7 @@ public class MainFrame extends javax.swing.JFrame {
         viewReportTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         viewReportTable.getTableHeader().setReorderingAllowed(false);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, travelExpenseReportList, viewReportTable);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, travelExpenseReportList, viewReportTable);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${reportID}"));
         columnBinding.setColumnName("Report ID");
         columnBinding.setColumnClass(Integer.class);
@@ -1274,8 +1277,11 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void viewPendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPendButtonActionPerformed
-        pendingELM.viewBecameActive();
-        viewPendingPanel.add( new JTable(pendingELM) );
+        travelExpenseReportQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createNamedQuery("TravelExpenseReport.findByStatusRequest");
+        travelExpenseReportQuery.setParameter("statusRequest", ReportState.PENDING_REPORT.getValue());
+        updateTableModel(travelExpenseReportList);
+        viewReportTable.revalidate();
+        viewReportTable.repaint();
         CardLayout basicMenuItems = (CardLayout) (basicMenuPanel.getLayout());
         basicMenuItems.show(basicMenuPanel, "card6");
     }//GEN-LAST:event_viewPendButtonActionPerformed
@@ -1294,6 +1300,13 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewReportTableMouseClicked
 
+    private void updateTableModel(List<TravelExpenseReport> list) {
+        List<TravelExpenseReport> tmp;
+        tmp = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : travelExpenseReportQuery.getResultList();
+        list.removeAll(list);
+        list.addAll(tmp);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1336,7 +1349,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JPanel basicTabPanel;
     public javax.swing.JComboBox chargeToDropDown;
     public javax.swing.JLabel chargeToLabel;
-    public java.util.List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList;
+    public List<com.georgeconsulting.expenseReport.ChargeTo> chargeToList;
     public javax.persistence.Query chargeToQuery;
     public javax.swing.JButton deleteButton;
     public javax.swing.JPanel deleteRequestPanel;
@@ -1397,7 +1410,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JTextField submitDateField;
     public javax.swing.JTextField submittedByField;
     public javax.swing.JLabel submittedByLabel;
-    public java.util.List<com.georgeconsulting.expenseReport.TravelExpenseReport> travelExpenseReportList;
+    public List<com.georgeconsulting.expenseReport.TravelExpenseReport> travelExpenseReportList;
     public javax.persistence.Query travelExpenseReportQuery;
     public javax.swing.JButton updateButton;
     public javax.swing.JLabel userNameLabel;
